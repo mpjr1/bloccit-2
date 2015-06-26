@@ -1,0 +1,8 @@
+<h1>Advertisement#index</h1>
+<% @advertisements.each do |advertisement| %>
+       <p>
+         <%= link_to advertisement.title, advertisement %>
+       </p>
+<% end %>
+<p><%= link_to '<i class="fi-plus" style="color:white; font-size: 125%; vertical-align: middle; padding-right: 5px;"></i> Create New Advertisement'.html_safe, new_advertisement_path, class: "button radius success" %></p>
+
