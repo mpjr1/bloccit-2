@@ -11,6 +11,7 @@ end
 
 gem 'bootstrap-sass'
 gem 'faker'
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
