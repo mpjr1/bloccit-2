@@ -14,8 +14,9 @@ class PostsController < ApplicationController
   end
 
   def create
-     @post = current_user.posts.build(params.require(:post).permit(:title, :body))
-    authorize @post
+     @post = Post.new(params.require(:post).permit(:title, :body))
+     @post.user = current_user
+     authorize @post
      if @post.save
        flash[:notice] = "Post was saved."
        redirect_to @post
