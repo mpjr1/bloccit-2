@@ -1,5 +1,9 @@
 class SummariesController < ApplicationController
   
+   def index
+    @summaries = Summary.all
+  end
+  
   def show
     @post = Post.find(params[:post_id])
     @summary = @post.summary
@@ -9,15 +13,15 @@ class SummariesController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
     @summary = Summary.new
-   # authorize @summary
+    authorize @summary
   end
 
   def create
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
     @summary = Summary.new(params.require(:summary).permit(:title, :body))
-     #@summary.user = current_user
-     #authorize @summary
+    @summary.user = current_user
+    authorize @summary
      if @summary.save
        flash[:notice] = "Summary was saved."
        redirect_to [@topic, @post, @summary]
@@ -31,14 +35,14 @@ class SummariesController < ApplicationController
     @topic = Topic.find(params[:topic_id])
    @post = Post.find(params[:post_id])
     @summary = Summary.find(params[:summary])
-  # authorize @summary
+   authorize @summary
   end
   
   def update
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
     @summary = Summary.find(params[:summary])
-    #authorize @summary
+    authorize @summary
      if @summary.update_attributes(params.require(:summary).permit(:title, :body))
        flash[:notice] = "Summary was updated."
        redirect_to [@topic, @post, @summary]
