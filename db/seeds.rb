@@ -49,6 +49,15 @@ require 'faker'
 end
 posts = Post.all
 
+# Create Summaries
+15.times do
+  Summary.create!(
+    post: posts.sample,
+     name:         Faker::Lorem.sentence,
+     description:  Faker::Lorem.paragraph
+   )
+end
+
 # Create Comments
 100.times do
   Comment.create!(
@@ -91,3 +100,4 @@ puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comment created"
+puts "#{Summary.count} summaries created"
