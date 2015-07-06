@@ -58,6 +58,16 @@ posts = Post.all
     )
 end
 
+# Create Summaries
+50.times do
+  Summary.create!(
+    post: posts.sample,
+    name:         Faker::Lorem.sentence,
+    description:  Faker::Lorem.paragraph
+  )
+end 
+summaries = Summary.all
+
  # Create an admin user
  admin = User.new(
    name:     'Admin User',
