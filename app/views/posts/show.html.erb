@@ -6,7 +6,13 @@
   </div>
   <div class="col-md-4">
     <% if policy(@post).edit? %>
-      <%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+      <%= link_to "Edit Post", edit_topic_post_path(@topic, @post), class: 'btn btn-success' %>
+       <% if @post.summary %>
+        <%= link_to "Show Summary", topic_post_summary_path(@topic, @post), class: 'btn btn-success' %>
+<!--         <%= link_to "Edit", edit_topic_post_summary_path(@topic, @post) %> -->
+          <% else %>
+    <%= link_to "Add New Summary", new_topic_post_summary_path(@topic, @post), class: 'btn btn-success' %>
+      <% end %>
     <% end %>
   </div>
 </div>
