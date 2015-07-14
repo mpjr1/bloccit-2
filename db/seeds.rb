@@ -39,7 +39,7 @@ require 'faker'
  topics = Topic.all
 
 # Create Posts
-50.times do
+500.times do
   Post.create!(
     user: users.sample,
     topic: topics.sample,
@@ -90,4 +90,5 @@ end
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
+puts "#{Topic.count} topics created"
 puts "#{Comment.count} comment created"
