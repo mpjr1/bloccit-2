@@ -12,4 +12,7 @@ class CommentPolicy < ApplicationPolicy
     user.present? && (record.user == user || user.admin? || user.moderator?)
   end
   
+  def update?
+    destroy?
+  end
 end 
