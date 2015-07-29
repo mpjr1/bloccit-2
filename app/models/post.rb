@@ -35,4 +35,15 @@ class Post < ActiveRecord::Base
     user.votes.create(value: 1, post: self)
   end
     
+  ActiveRecord::Base.transaction do
+      
+     def save_with_initial_vote
+        Post.transaction(requires_new: true) do
+        create_vote!
+        vote.save!
+        raise ActiveRecord::Rollback
+      end
+     end
+  end
+
 end
