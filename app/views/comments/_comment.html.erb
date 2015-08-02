@@ -1,4 +1,4 @@
-<div class="media">
+ <%= content_tag :div, class: 'media', id: "comment-#{comment.id}" do %>
   <div class="media-body">
     <%= comment.body %>
     <% if comment.user %>
@@ -14,4 +14,4 @@
       <% end %>
     </small>
   </div>
-</div>
+<% end %>
