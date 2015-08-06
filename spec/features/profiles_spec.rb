@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'spec_helper'
+require 'warden'
 
 
  describe "Visiting profiles" do

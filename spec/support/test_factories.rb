@@ -1,7 +1,8 @@
-module TestFactories
-  
+require 'spec_helper'
 
-  FactoryGirl.define do
+module TestFactories
+
+  ::FactoryGirl.define do
     factory :user do
       email 'test@example.com'
       password 'helloworld'

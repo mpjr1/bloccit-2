@@ -6,13 +6,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 
-
-RSpec.configure do |config|
-  config.include Warden::Test::Helpers
-  config.before :suite do
-    Warden.test_mode!
-  end
-end
+include Warden::Test::Helpers
+Warden.test_mode!
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
