@@ -1,5 +1,16 @@
 module TestFactories
   
+
+  FactoryGirl.define do
+    factory :user do
+      email 'test@example.com'
+      password 'helloworld'
+      
+      #if needed
+      #is_active true
+    end
+  end
+  
   def associated_post(options={})
   
    post_options = {
