@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
- 
+
+
   get 'comments/new'
 
   devise_for :users
@@ -74,4 +75,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end

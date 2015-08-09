@@ -65,5 +65,6 @@ group :development, :test do
   gem 'spring'
 
   gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
