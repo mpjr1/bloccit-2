@@ -39,7 +39,7 @@
 <!-- Comments seciont, from for to create a comment is rendered. Also if there is already a comment it will be rendered partially. User will have access to it if it is present. -->
 <!-- <% if policy(@comments).create? %> Comment Policy present, based on def create  -->
   <h2>Comments</h2>
-      <%= render @comments %> 
+      <%= render partial: 'comments/comment', collection: @comments %> 
 
 <p>Add Comment</p>
       <%= render 'comments/form', topic: @topic, post: @post, comment: @comment %>
