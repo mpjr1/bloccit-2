@@ -14,8 +14,8 @@ require 'warden'
      @user = authenticated_user
      @post = associated_post(user: @user)
      @comment = Comment.new(user: @user, post: @post, body: "A Comment")
-    allow(@comment).to receive(:send_favorite_emails)
-    @comment.save!
+     allow(@comment).to receive(:send_favorite_emails)
+     @comment.save!
    end
  
    describe "not signed in" do
@@ -32,10 +32,9 @@ require 'warden'
       
    describe "signed in" do 
     before do
-      user = FactoryGirl.create(:user)
-      user.confirmed_at = Time.now
-      user.save
-      login_as(@user, scope: :user)
+      user = User.create(email: 'test01@example.com', password: 'helloworld')
+      user.confirm!
+      login_as user, scope: :user
     end 
      
      after do
@@ -48,7 +47,7 @@ require 'warden'
 
       expect( page ).to have_content(@user.name)
       expect( page ).to have_content(@post.title)
-      #expect( page ).to have_content(@comment.body)
+      expect( page ).to have_content(@comment.body)
     end    
     
 
