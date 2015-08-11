@@ -22,10 +22,12 @@ describe User do
        @user2 = create(:user)
        post = create(:post, user: @user2)
        2.times { create(:comment, user: @user2, post: post) }
+       
+       @user3 = FactoryGirl.create(:user_with_post_and_comment)
      end
  
      it "returns users ordered by comments + posts" do
-       expect( User.top_rated ).to eq([@user2, @user1])
+       expect( User.top_rated ).to eq([@user2, @user1, @user3])
      end
  
      it "stores a `posts_count` on user" do
