@@ -4,64 +4,46 @@ class CommentsController < ApplicationController
   end
   
   def create
-    #@topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(comments_params)
-    if @comment.save
-      redirect_to [@post.topic, @post], notice: "Comment was saved successfully."
-    else 
-      flash[:error] = "Error creating comment. Please try again."
-      render :new
-    end 
-  end 
-  
-  def edit
-    #@topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
+    @comment = current_user.comments.new(comment_params)
+    @comment.post = @post
+    @new_comment = Comment.new
+    
     authorize @comment
+    
+    if @comment.save
+      flash[:notice] = "Comment was created."
+    else
+      flash[:error] = "Comment failed to save."
+    end
+    
+     respond_to do |format|
+      format.html
+      format.js
+    end
   end
-  
-   def update
-    #@topic = Topic.find(params[:topic_id])
+    
+   def destroy
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
-     
     authorize @comment
 
-     if @comment.update_attributes(comments_params)
-      flash[:notice] = "Comment was updated."
-       redirect_to [@post.topic, @post]
-    else
-      flash[:error] = "There was an error updating the comment. Please try again."
-      render :new
-    end
-   end
-  
-   def destroy
-    #@topic = Topic.find(params[:topic_id])
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id])
- 
-    authorize @comment
     if @comment.destroy
       flash[:notice] = "Comment was removed."
-      #redirect_to [@post.topic, @post]
     else
       flash[:error] = "Comment couldn't be deleted. Try again."
-      #redirect_to [@post.topic, @post]
     end
-     
-      respond_to do |format|
-        format.html
-        format.js
-      end
+
+    respond_to do |format|
+       format.html
+       format.js
+     end
    end
-  
+
   private
-  
-  def comments_params
+
+  def comment_params
     params.require(:comment).permit(:body)
   end
-  
+
 end
