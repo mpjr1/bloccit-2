@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
-
+var blocmetrics = {};
 blocmetrics.report = function(eventName) {
 
    var event = { name: eventName };
