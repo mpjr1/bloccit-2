@@ -25,4 +25,4 @@ blocmetrics.report = function(eventName) {
    request.send(JSON.stringify(event));
 }
 
-$(document).on(‘click’, function ( e ) { blocmetrics.report(‘click’); });
+$(document).on('click', function ( e ) { blocmetrics.report('click'); });
